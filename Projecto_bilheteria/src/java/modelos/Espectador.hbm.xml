@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-Jun-2023 21:51:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Espectador" table="espectador" catalog="iscim_bilheteria" optimistic-lock="version">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="utilizador" class="modelos.Utilizador" fetch="select">
+            <column name="espectador_id" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="nome" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="bairro" length="100" />
+        </property>
+        <property name="cidade" type="string">
+            <column name="cidade" length="100" />
+        </property>
+        <property name="telefone" type="string">
+            <column name="telefone" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

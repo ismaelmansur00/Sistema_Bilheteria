@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-Jun-2023 21:51:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Evento" table="evento" catalog="iscim_bilheteria" optimistic-lock="version">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="utilizador" class="modelos.Utilizador" fetch="select">
+            <column name="admin_id" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="nome" length="200" />
+        </property>
+        <property name="horaInicio" type="time">
+            <column name="hora_inicio" length="8" />
+        </property>
+        <property name="horaFim" type="time">
+            <column name="hora_fim" length="8" />
+        </property>
+        <property name="dataEvento" type="date">
+            <column name="data_evento" length="10" />
+        </property>
+        <property name="numeroBilhete" type="java.lang.Integer">
+            <column name="numero_bilhete" />
+        </property>
+        <property name="localEvento" type="string">
+            <column name="local_evento" length="200" />
+        </property>
+        <property name="valorEvento" type="java.lang.Double">
+            <column name="valor_evento" precision="22" scale="0" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="65535" not-null="true" />
+        </property>
+        <set name="bilhetes" table="bilhete" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="evento_id" />
+            </key>
+            <one-to-many class="modelos.Bilhete" />
+        </set>
+    </class>
+</hibernate-mapping>

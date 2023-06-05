@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-Jun-2023 21:51:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Utilizador" table="utilizador" catalog="iscim_bilheteria" optimistic-lock="version">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="email" type="string">
+            <column name="email" unique="true" />
+        </property>
+        <property name="senha" type="string">
+            <column name="senha" />
+        </property>
+        <property name="perfil" type="string">
+            <column name="perfil" />
+        </property>
+        <set name="espectadors" table="espectador" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="espectador_id" />
+            </key>
+            <one-to-many class="modelos.Espectador" />
+        </set>
+        <set name="eventos" table="evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="admin_id" />
+            </key>
+            <one-to-many class="modelos.Evento" />
+        </set>
+        <set name="bilhetes" table="bilhete" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="espectador_id" />
+            </key>
+            <one-to-many class="modelos.Bilhete" />
+        </set>
+    </class>
+</hibernate-mapping>
